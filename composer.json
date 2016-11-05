@@ -1,0 +1,22 @@
+{
+    "name": "corycollier/pornhub-api",
+    "description": "Pornhub API",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.6"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cory Collier",
+            "email": "corycollier@corycollier.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": { "Service\\": "src/Service/" }
+    }
+}
