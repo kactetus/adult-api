@@ -17,6 +17,6 @@
     ],
     "minimum-stability": "dev",
     "autoload": {
-        "psr-4": { "Service\\": "src/Service/" }
+        "psr-4": { "Porn\\": "src/" }
     }
 }

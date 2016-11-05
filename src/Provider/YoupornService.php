@@ -1,13 +1,10 @@
 <?php
-namespace Service;
 
-use Service\AbstractService as AbstractService;
-use GuzzleHttp\Client as Client;
-use GuzzleHttp\Psr7\Response as Response;
+namespace Porn\Provider;
 
-class Pornhub extends AbstractService
+class YoupornService extends AbstractService
 {
-    const URI = 'http://www.pornhub.com/webmasters/';
+    const URI = 'http://www.youporn.com/api/webmasters/';
 
     /**
      * Searchs the server for videos.
@@ -35,9 +32,10 @@ class Pornhub extends AbstractService
     public function getVideoById($id, $thumbsize = 'medium')
     {
         $endpoint = $this->getEndpoint('video_by_id', [
-            'id'        => $id,
+            'video_id'  => $id,
             'thumbsize' => $thumbsize,
         ]);
+        $response = $this->request($endpoint);
         return $this->decodeResponse($response);
     }
 
@@ -63,32 +61,3 @@ class Pornhub extends AbstractService
         return $this->decodeResponse($response);
     }
 }
-
-$service = new Pornhub(new Client);
-print_r(
-    // $service->search([
-    //     'search' => 'cuckold'
-    // ]),
-    $service->getStarList()
-);
-
-// searchVideos
-// getVideoById
-// getVideoEmbedCode
-// getDeletedVideos
-// isVideoActive
-// getCategoriesList
-// getTagsList
-// getStarList
-// getStarDetailedList
-// Global error messages
-// 1001:No such method.
-// 1002:No such data provider.
-// 1003:No input parameters specified.
-// Video methods error messages
-// 2001:No videos found.
-// 2002:No video with this ID.
-// Additional methods error messages
-// 3001:No categories found.
-// 3002:No tags found.
-// 3003:No stars found.

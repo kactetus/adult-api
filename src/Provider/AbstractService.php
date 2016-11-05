@@ -1,6 +1,6 @@
 <?php
 
-namespace Service;
+namespace Porn\Provider;
 
 use GuzzleHttp\Client as Client;
 use GuzzleHttp\Psr7\Response as Response;
@@ -8,7 +8,7 @@ use GuzzleHttp\Psr7\Response as Response;
 abstract class AbstractService
 {
     const URI = '';
-    
+
     protected $client;
 
     public function __construct(Client $client)
