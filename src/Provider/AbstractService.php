@@ -66,6 +66,11 @@ abstract class AbstractService
     protected function getTransformedResultData($type, $data = [])
     {
         $results = [];
+
+        if (! $data) {
+            return $results;
+        }
+        
         $factory = $this->getResultFactory();
         foreach ($data as $record) {
             $results[] = $factory->factory($type, $record);
