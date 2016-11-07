@@ -2,21 +2,8 @@
 
 namespace Adult\Search;
 
-class PornResult implements ResultInterface
+class PornResult extends AbstractResult
 {
-    protected $data;
-
-    public function __construct($data)
-    {
-        $this->setData($data);
-    }
-
-    public function setData($data)
-    {
-        $this->data = $data;
-        return $this;
-    }
-
     public function getUrl()
     {
         return $this->data['url'];

@@ -2,19 +2,11 @@
 
 namespace Adult\Search;
 
-class RedtubeResult implements ResultInterface
+class RedtubeResult extends AbstractResult
 {
-    protected $data;
-
     public function __construct($data)
     {
         $this->setData($data['video']);
-    }
-
-    public function setData($data)
-    {
-        $this->data = $data;
-        return $this;
     }
 
     public function getUrl()

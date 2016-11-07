@@ -2,19 +2,11 @@
 
 namespace Adult\Search;
 
-class SpankwireResult implements ResultInterface
+class SpankwireResult extends AbstractResult
 {
-    protected $data;
-
     public function __construct($data)
     {
         $this->setData($data['video']);
-    }
-
-    public function setData($data)
-    {
-        $this->data = $data;
-        return $this;
     }
 
     public function getUrl()
