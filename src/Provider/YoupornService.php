@@ -5,6 +5,7 @@ namespace Porn\Provider;
 class YoupornService extends AbstractService
 {
     const URI = 'http://www.youporn.com/api/webmasters/';
+    const TYPE = 'youporn';
 
     /**
      * Searchs the server for videos.
@@ -13,20 +14,31 @@ class YoupornService extends AbstractService
      *
      * @return array An array of results
      */
-    public function search($params = [])
+    public function search($terms, $params = [])
+    {
+        $endpoint = $this->getSearchEndpoint($terms, $params);
+        $response = $this->request($endpoint);
+        return $this->handleSearchResponse($response);
+    }
+
+    public function handleSearchResponse($response)
+    {
+        $data = $this->decodeResponse($response);
+        return $this->getTransformedResultData(self::TYPE, $data['video']);
+    }
+
+    public function getSearchEndpoint($terms, $params = [])
     {
         $defaults = [
-            'search' => '',
-            'category' => '',
-            'page' => 1,
-            'stars' => 5,
-            'tags' => [],
+            'search'    => $terms,
+            'category'  => '',
+            'page'      => 1,
+            'stars'     => 5,
+            'tags'      => [],
             'thumbsize' => 'large',
         ];
 
-        $endpoint = $this->getEndpoint('search', array_merge($defaults, $params));
-        $response = $this->request($endpoint);
-        return $this->decodeResponse($response);
+        return $this->getEndpoint('search', array_merge($defaults, $params));
     }
 
     public function getVideoById($id, $thumbsize = 'medium')

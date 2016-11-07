@@ -2,10 +2,10 @@
 
 namespace Porn\Provider;
 
-class XtubeService extends AbstractService
+class Tube8Service extends AbstractService
 {
-    const URI = 'http://www.xtube.com/webmaster/api.php';
-    const TYPE = 'xtube';
+    const URI = 'http://api.tube8.com/api.php';
+    const TYPE = 'tube8';
 
     /**
      * Searchs the server for videos.
@@ -24,7 +24,7 @@ class XtubeService extends AbstractService
     public function handleSearchResponse($response)
     {
         $data = $this->decodeResponse($response);
-        return $this->getTransformedResultData(self::TYPE, $data);
+        return $this->getTransformedResultData(self::TYPE, $data['videos']);
     }
 
     public function getSearchEndpoint($terms, $params = [])
@@ -33,10 +33,9 @@ class XtubeService extends AbstractService
             'search'    => $terms,
             'category'  => '',
             'page'      => 1,
-            'stars'     => 5,
-            'tags'      => [],
             'thumbsize' => 'large',
-            'action'    => 'getVideosBySearchParams',
+            'output'    => 'json',
+            'action'    => 'searchVideos',
         ];
 
         return $this->getEndpoint(null, array_merge($defaults, $params));
@@ -46,6 +45,8 @@ class XtubeService extends AbstractService
     {
         $endpoint = $this->getEndpoint(null, [
             'action'    => 'getVideoById',
+            'output'    => 'json',
+            'thumbsize' => $thumbsize,
             'video_id'  => $id,
         ]);
         $response = $this->request($endpoint);
@@ -54,14 +55,20 @@ class XtubeService extends AbstractService
 
     public function getTagsList()
     {
-        $endpoint = $this->getEndpoint(null, ['action' => 'getTagList']);
+        $endpoint = $this->getEndpoint(null, [
+            'action' => 'gettaglist',
+            'output' => 'json',
+        ]);
         $response = $this->request($endpoint);
         return $this->decodeResponse($response);
     }
 
     public function getCategoriesList()
     {
-        $endpoint = $this->getEndpoint(null, ['action' => 'getCategoryList']);
+        $endpoint = $this->getEndpoint(null, [
+            'action' => 'getcategorieslist',
+            'output' => 'json',
+        ]);
         $response = $this->request($endpoint);
         return $this->decodeResponse($response);
     }

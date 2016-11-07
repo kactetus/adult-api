@@ -5,6 +5,7 @@ namespace Porn\Provider;
 class PornService extends AbstractService
 {
     const URI = 'http://api.porn.com/';
+    const TYPE = 'porn';
 
     /**
      * Searchs the server for videos.
@@ -13,20 +14,30 @@ class PornService extends AbstractService
      *
      * @return array An array of results
      */
-    public function search($params = [])
+    public function search($terms, $params = [])
+    {
+        $endpoint = $this->getSearchEndpoint($terms, $params);
+        $response = $this->request($endpoint);
+        return $this->handleSearchResponse($response);
+    }
+
+    public function handleSearchResponse($response)
+    {
+        $data = $this->decodeResponse($response);
+        return $this->getTransformedResultData(self::TYPE, $data['result']);
+    }
+
+    public function getSearchEndpoint($terms, $params = [])
     {
         $defaults = [
-            'search' => '',
+            'search' => $terms,
             'cats'   => '',
             'page'   => 1,
             'tags'   => [],
             'thumbs' => 'large',
         ];
 
-        $endpoint = $this->getEndpoint('videos/find.json', array_merge($defaults, $params));
-        $response = $this->request($endpoint);
-        $result = $this->decodeResponse($response);
-        return $result['result'];
+         return $this->getEndpoint('videos/find.json', array_merge($defaults, $params));
     }
 
     public function getVideoById($id, $thumbsize = 'medium')
@@ -37,7 +48,7 @@ class PornService extends AbstractService
         ]);
 
         $response = $this->request($endpoint);
-        $result = $this->decodeResponse($response);
+        $result   = $this->decodeResponse($response);
         return $result['result'];
     }
 
@@ -51,7 +62,7 @@ class PornService extends AbstractService
 
         $endpoint = $this->getEndpoint('actors/find.json', array_merge($defaults, $params));
         $response = $this->request($endpoint);
-        $result = $this->decodeResponse($response);
+        $result   = $this->decodeResponse($response);
         return $result['result'];
     }
 
@@ -59,7 +70,7 @@ class PornService extends AbstractService
     {
         $endpoint = $this->getEndpoint('categories/find.json');
         $response = $this->request($endpoint);
-        $result = $this->decodeResponse($response);
+        $result   = $this->decodeResponse($response);
         return $result['result'];
     }
 

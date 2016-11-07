@@ -2,10 +2,10 @@
 
 namespace Porn\Provider;
 
-class XtubeService extends AbstractService
+class SpankwireService extends AbstractService
 {
-    const URI = 'http://www.xtube.com/webmaster/api.php';
-    const TYPE = 'xtube';
+    const URI = 'http://www.spankwire.com/api/HubTrafficApiCall';
+    const TYPE = 'spankwire';
 
     /**
      * Searchs the server for videos.
@@ -36,7 +36,8 @@ class XtubeService extends AbstractService
             'stars'     => 5,
             'tags'      => [],
             'thumbsize' => 'large',
-            'action'    => 'getVideosBySearchParams',
+            'output'    => 'json',
+            'data'      => 'searchVideos',
         ];
 
         return $this->getEndpoint(null, array_merge($defaults, $params));
@@ -45,7 +46,9 @@ class XtubeService extends AbstractService
     public function getVideoById($id, $thumbsize = 'medium')
     {
         $endpoint = $this->getEndpoint(null, [
-            'action'    => 'getVideoById',
+            'data'      => 'getVideoById',
+            'output'    => 'json',
+            'thumbsize' => $thumbsize,
             'video_id'  => $id,
         ]);
         $response = $this->request($endpoint);
@@ -54,14 +57,20 @@ class XtubeService extends AbstractService
 
     public function getTagsList()
     {
-        $endpoint = $this->getEndpoint(null, ['action' => 'getTagList']);
+        $endpoint = $this->getEndpoint(null, [
+            'data'   => 'getTagList',
+            'output' => 'json',
+        ]);
         $response = $this->request($endpoint);
         return $this->decodeResponse($response);
     }
 
     public function getCategoriesList()
     {
-        $endpoint = $this->getEndpoint(null, ['action' => 'getCategoryList']);
+        $endpoint = $this->getEndpoint(null, [
+            'data' => 'getCategoriesList',
+            'output' => 'json',
+        ]);
         $response = $this->request($endpoint);
         return $this->decodeResponse($response);
     }
