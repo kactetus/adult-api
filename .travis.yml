@@ -4,3 +4,4 @@ php:
   - '7.0'
 
 install: composer install
+script: phpunit -c build/phpunit.xml --no-coverage
