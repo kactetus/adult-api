@@ -1,8 +1,8 @@
 <?php
 
-namespace Porn\Provider;
+namespace Adult\Provider;
 
-use Porn\Search\ResultFactory as ResultFactory;
+use Adult\Search\ResultFactory as ResultFactory;
 use GuzzleHttp\Client as Client;
 use GuzzleHttp\Psr7\Response as Response;
 

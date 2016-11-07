@@ -1,29 +1,29 @@
 <?php
 
-namespace Porn\Provider;
+namespace Adult\Provider;
 
 use GuzzleHttp\Client as Client;
-use Porn\Provider\PornhubService as PornhubService;
-use Porn\Provider\YoupornService as YoupornService;
-use Porn\Provider\XtubeService as XtubeService;
-use Porn\Provider\PornService as PornService;
-use Porn\Provider\RedtubeService as RedtubeService;
-use Porn\Provider\SpankwireService as SpankwireService;
-use Porn\Provider\Tube8Service as Tube8Service;
-use Porn\Search\ResultFactory as ResultFactory;
+use Adult\Provider\PornhubService as PornhubService;
+use Adult\Provider\YoupornService as YoupornService;
+use Adult\Provider\XtubeService as XtubeService;
+use Adult\Provider\PornService as PornService;
+use Adult\Provider\RedtubeService as RedtubeService;
+use Adult\Provider\SpankwireService as SpankwireService;
+use Adult\Provider\Tube8Service as Tube8Service;
+use Adult\Search\ResultFactory as ResultFactory;
 
 class ServiceFactory
 {
     const MSG_UKNOWN_SERVICE = 'The service [%s] is not found';
 
     protected $map = [
-        'pornhub'   => 'Porn\Provider\PornhubService',
-        'youporn'   => 'Porn\Provider\YoupornService',
-        // 'xtube'     => 'Porn\Provider\XtubeService',
-        'porn'      => 'Porn\Provider\PornService',
-        'redtube'   => 'Porn\Provider\RedtubeService',
-        // 'spankwire' => 'Porn\Provider\SpankwireService',
-        'tube8'     => 'Porn\Provider\Tube8Service',
+        'pornhub'   => 'Adult\Provider\PornhubService',
+        'youporn'   => 'Adult\Provider\YoupornService',
+        // 'xtube'     => 'Adult\Provider\XtubeService',
+        'porn'      => 'Adult\Provider\PornService',
+        'redtube'   => 'Adult\Provider\RedtubeService',
+        // 'spankwire' => 'Adult\Provider\SpankwireService',
+        'tube8'     => 'Adult\Provider\Tube8Service',
     ];
 
     public function factory($name)

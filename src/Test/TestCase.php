@@ -1,6 +1,6 @@
 <?php
 
-namespace Porn\Test;
+namespace Adult\Test;
 
 class TestCase extends \PHPUnit_Framework_TestCase
 {

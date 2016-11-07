@@ -1,6 +1,6 @@
 {
-    "name": "corycollier/pornhub-api",
-    "description": "Porn Search Aggregation Library",
+    "name": "corycollier/adult-api",
+    "description": "Adult Search Aggregation Library",
     "type": "library",
     "version" : "1.0.0",
     "require": {
@@ -19,6 +19,6 @@
     "minimum-stability": "dev",
     "prefer-stable" : true,
     "autoload": {
-        "psr-4": { "Porn\\": "src/" }
+        "psr-4": { "Adult\\": "src/" }
     }
 }
