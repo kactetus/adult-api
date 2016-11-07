@@ -3,6 +3,7 @@
 namespace Tests\Provider;
 
 use Adult\Test\TestCase as TestCase;
+use Adult\Search\ResultFactory as ResultFactory;
 use Adult\Provider\AbstractService as AbstractService;
 use GuzzleHttp\Client as Client;
 
@@ -10,16 +11,18 @@ class AbstractServiceTest extends TestCase
 {
     public function testSetClient()
     {
+        $factory = new ResultFactory;
         $client = new Client;
-        $sut = $this->getMockForAbstractClass(AbstractService::class, [$client]);
+        $sut = $this->getMockForAbstractClass(AbstractService::class, [$client, $factory]);
         $result = $sut->setClient($client);
         $this->assertEquals($sut, $result);
     }
 
     public function testGetClient()
     {
+        $factory = new ResultFactory;
         $client = new Client;
-        $sut = $this->getMockForAbstractClass(AbstractService::class, [$client]);
+        $sut = $this->getMockForAbstractClass(AbstractService::class, [$client, $factory]);
         $result = $sut->getClient($client);
         $this->assertEquals($client, $result);
     }
@@ -49,7 +52,7 @@ class AbstractServiceTest extends TestCase
      */
     public function testGetEndpoint($expected, $url, $params = [])
     {
-        $sut = $this->getMockForAbstractClass(AbstractService::class, [new Client]);
+        $sut = $this->getMockForAbstractClass(AbstractService::class, [new Client, new ResultFactory]);
         $result = $this->getMethod(AbstractService::class, 'getEndpoint')->invoke($sut, $url, $params);
         $this->assertEquals($expected, $result);
     }
@@ -87,7 +90,7 @@ class AbstractServiceTest extends TestCase
         $expected = ['key' => 'value'];
         $body     = (object)['key' => 'value'];
         $response = $this->getMockedClass('\GuzzleHttp\Psr7\Response', ['getBody']);
-        $sut      = $this->getMockForAbstractClass(AbstractService::class, [new Client]);
+        $sut      = $this->getMockForAbstractClass(AbstractService::class, [new Client, new ResultFactory]);
 
         $response->expects($this->once())
             ->method('getBody')
