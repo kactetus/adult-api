@@ -2,7 +2,7 @@
     "name": "corycollier/adult-api",
     "description": "Adult Search Aggregation Library",
     "type": "library",
-    "version" : "1.0.0",
+    "version" : "1.0.3",
     "require": {
         "guzzlehttp/guzzle": "^6.2"
     },
