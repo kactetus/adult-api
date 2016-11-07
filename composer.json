@@ -1,7 +1,8 @@
 {
     "name": "corycollier/pornhub-api",
-    "description": "Pornhub API",
+    "description": "Porn Search Aggregation Library",
     "type": "library",
+    "version" : "1.0.0",
     "require": {
         "guzzlehttp/guzzle": "^6.2"
     },
@@ -16,6 +17,7 @@
         }
     ],
     "minimum-stability": "dev",
+    "prefer-stable" : true,
     "autoload": {
         "psr-4": { "Porn\\": "src/" }
     }
