@@ -1,6 +1,6 @@
 <?php
 
-namespace Porn\Search;
+namespace Adult\Search;
 
 class PornResult implements ResultInterface
 {

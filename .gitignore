@@ -4,3 +4,6 @@ cache.properties
 vendor/
 build/*
 !build/*.xml
+
+composer.phar
+composer.lock

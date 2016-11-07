@@ -2,8 +2,8 @@
 
 namespace Tests\Provider;
 
-use Porn\Test\TestCase as TestCase;
-use Porn\Provider\AbstractService as AbstractService;
+use Adult\Test\TestCase as TestCase;
+use Adult\Provider\AbstractService as AbstractService;
 use GuzzleHttp\Client as Client;
 
 class AbstractServiceTest extends TestCase

@@ -1,6 +1,6 @@
 <?php
 
-namespace Porn\Provider;
+namespace Adult\Provider;
 
 class SpankwireService extends AbstractService
 {
