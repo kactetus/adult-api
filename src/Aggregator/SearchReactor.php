@@ -1,8 +1,8 @@
 <?php
 
-namespace Porn\Aggregator;
+namespace Adult\Aggregator;
 
-use Porn\Provider\ServiceFactory as ServiceFactory;
+use Adult\Provider\ServiceFactory as ServiceFactory;
 use GuzzleHttp\Promise;
 
 class SearchReactor

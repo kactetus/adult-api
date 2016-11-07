@@ -1,14 +1,6 @@
 <?php
 
-namespace Porn\Search;
-
-use Porn\Result\PornhubResult as PornhubResult;
-// use Porn\Result\YoupornResult as YoupornResult;
-// use Porn\Result\XtubeResult as XtubeResult;
-// use Porn\Result\PornResult as PornResult;
-// use Porn\Result\RedtubeResult as RedtubeResult;
-// use Porn\Result\SpankwireResult as SpankwireResult;
-// use Porn\Result\Tube8Result as Tube8Result;
+namespace Adult\Search;
 
 class ResultFactory
 {
@@ -16,13 +8,13 @@ class ResultFactory
     const MSG_UKNOWN_Result = 'The Result [%s] is not found';
 
     protected $map = [
-        'pornhub'   => 'Porn\Search\PornhubResult',
-        'youporn'   => 'Porn\Search\YoupornResult',
-        'porn'      => 'Porn\Search\PornResult',
-        'redtube'   => 'Porn\Search\RedtubeResult',
-        // 'spankwire' => 'Porn\Search\SpankwireResult',
-        'tube8'     => 'Porn\Search\Tube8Result',
-        'xtube'     => 'Porn\Search\XtubeResult',
+        'pornhub'   => 'Adult\Search\PornhubResult',
+        'youporn'   => 'Adult\Search\YoupornResult',
+        'porn'      => 'Adult\Search\PornResult',
+        'redtube'   => 'Adult\Search\RedtubeResult',
+        // 'spankwire' => 'Adult\Search\SpankwireResult',
+        'tube8'     => 'Adult\Search\Tube8Result',
+        'xtube'     => 'Adult\Search\XtubeResult',
     ];
 
     public function factory($name, $data = [])
